@@ -4,9 +4,9 @@
 *,
 ::after,
 ::before {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
   -webkit-box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
@@ -18,9 +18,7 @@ h3,
 h4,
 h5,
 h6,
-.btn,
-.navbar-brand,
-.navbar-brand span {
+.btn {
   font-family: 'Poppins', sans-serif;
 }
 
@@ -99,5 +97,42 @@ body {
 
 .like-btn {
   cursor: pointer;
+}
+
+/***more styles***/
+.navbar {
+  background-color: #eeeed6;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #eeeed6;
+  padding: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  font-style: italic;
+}
+
+.footer a:hover {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    font-size: 18px;
+  }
 }
 
