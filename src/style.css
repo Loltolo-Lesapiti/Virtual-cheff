@@ -1,3 +1,6 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css");
+@import url('http://fonts.cdnfonts.com/css/poppins');
+
 *,
 ::after,
 ::before {
@@ -5,4 +8,96 @@
   padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
+h1,
+h1 span,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn,
+.navbar-brand,
+.navbar-brand span {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #383A59;
+}
+
+.meal-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  background: bisque;
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: 0.2rem;
+  text-align: center;
+  padding: 2rem 0;
+  display: none;
+}
+
+.meal-details::-webkit-scrollbar {
+  width: 10px;
+}
+
+.meal-details::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 2rem;
+}
+
+.showComment {
+  display: block;
+}
+
+.meal-details-content {
+  margin: 2rem;
+}
+
+.close-btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 1.8rem;
+  background: #fff;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meal-img {
+  height: 250px;
+  overflow: hidden;
+}
+
+.meal-img img {
+  width: 100%;
+}
+
+.recipe-meal-img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+.like-btn {
+  cursor: pointer;
+}
+
