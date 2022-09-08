@@ -16,7 +16,6 @@
   \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n___CSS_LOADER_EXPORT___.push([module.id, \"@import url(https://fonts.googleapis.com/css2?family=Courgette&family=Patrick+Hand&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);\"]);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"*,\\r\\n::after,\\r\\n::before {\\r\\n  margin: 0;\\r\\n  padding: 0;\\r\\n  box-sizing: border-box;\\r\\n  -webkit-box-sizing: border-box;\\r\\n}\\r\\n.navbar{\\r\\n  background-color: #EEEED6;\\r\\n  font-size: 24px;\\r\\n  font-family: \\\"Poppins\\\", sans-serif;\\r\\n}\\r\\n.nav-link:hover {\\r\\n  text-decoration: underline;\\r\\n}\\r\\n.footer {\\r\\n  position: fixed;\\r\\n  left: 0;\\r\\n  bottom: 0;\\r\\n  width: 100%;\\r\\n  text-align: center;\\r\\n  background-color: #EEEED6;\\r\\n  padding: 20px;\\r\\n}\\r\\n\\r\\n.footer a {\\r\\n  text-decoration: none;\\r\\n  font-style: italic;\\r\\n}\\r\\n\\r\\n.footer a:hover {\\r\\n  cursor: pointer;\\r\\n  font-size: 18px;\\r\\n}\\r\\n@media screen and (min-width: 768px) {\\r\\n  footer {\\r\\n      font-size: 18px;\\r\\n    }\\r\\n}\\r\\n\\r\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://webpack/./src/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -110,13 +109,63 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/createMealLike.js":
+/*!*******************************!*\
+  !*** ./src/createMealLike.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst createLike = async (mealId) => {\r\n    const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8WhiXHgGMaGrsfo6vYsR/likes', {\r\n      method: 'POST',\r\n      body: JSON.stringify({\r\n        item_id: mealId,\r\n      }),\r\n      headers: {\r\n        'Content-type': 'application/json; charset=UTF-8',\r\n      },\r\n    });\r\n    return response.text();\r\n  };\r\n  \r\n  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createLike);\r\n  \n\n//# sourceURL=webpack://webpack/./src/createMealLike.js?");
+
+/***/ }),
+
+/***/ "./src/getMealLikes.js":
+/*!*****************************!*\
+  !*** ./src/getMealLikes.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst getMealLikes = async () => {\r\n    const response = await fetch(\r\n      'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8WhiXHgGMaGrsfo6vYsR/likes',\r\n    );\r\n    return response.json();\r\n  };\r\n  \r\n  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getMealLikes);\r\n  \n\n//# sourceURL=webpack://webpack/./src/getMealLikes.js?");
+
+/***/ }),
+
+/***/ "./src/getMeals.js":
+/*!*************************!*\
+  !*** ./src/getMeals.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst getMeals = async () => {\r\n  const response = await fetch(\r\n    'https://www.themealdb.com/api/json/v1/1/filter.php?a=Jamaican',\r\n  );\r\n  const result = await response.json();\r\n  return result.meals;\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getMeals);\r\n\n\n//# sourceURL=webpack://webpack/./src/getMeals.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n//# sourceURL=webpack://webpack/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _getMeals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getMeals */ \"./src/getMeals.js\");\n/* harmony import */ var _mealList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mealList */ \"./src/mealList.js\");\n\r\n\r\n\r\n\r\nwindow.addEventListener('load', async () => {\r\n    (0,_mealList__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(await (0,_getMeals__WEBPACK_IMPORTED_MODULE_1__[\"default\"])());\r\n});\n\n//# sourceURL=webpack://webpack/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/mealCommentCounter.js":
+/*!***********************************!*\
+  !*** ./src/mealCommentCounter.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst commentCounter = (myComment) => {\r\n    const count = myComment.length ? myComment.length : 0;\r\n    return count;\r\n  };\r\n  \r\n  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (commentCounter);\r\n  \n\n//# sourceURL=webpack://webpack/./src/mealCommentCounter.js?");
+
+/***/ }),
+
+/***/ "./src/mealList.js":
+/*!*************************!*\
+  !*** ./src/mealList.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _createMealLike__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createMealLike */ \"./src/createMealLike.js\");\n/* harmony import */ var _getMealLikes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getMealLikes */ \"./src/getMealLikes.js\");\n/* harmony import */ var _mealCommentCounter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mealCommentCounter */ \"./src/mealCommentCounter.js\");\n\r\n\r\n\r\n\r\nconst mainDiv = document.querySelector('#meal-items');\r\nconst btnClose = document.querySelector('.close-btn');\r\nconst mealRecipeDetails = document.querySelector('.meal-recipe');\r\n\r\nconst mealLikesCount = (target, mealLikesArray, numOfLikes) => {\r\n  mealLikesArray.forEach((obj) => {\r\n    if (obj.item_id === target.id) {\r\n      numOfLikes.innerHTML = `${obj.likes} likes `;\r\n    }\r\n  });\r\n};\r\n\r\nconst mealList = async (data) => {\r\n\r\n  for (let i = 0; i <= data.length - 1; i += 1) {\r\n    const foodDiv = document.createElement('div');\r\n    foodDiv.classList.add('col-lg-4');\r\n\r\n    const listItem = document.createElement('div');\r\n    listItem.id = data[i].idMeal;\r\n    foodDiv.setAttribute('data-id', `${data[i].idMeal}`);\r\n    listItem.classList.add('meal-item', 'text-center', 'card', 'shadow', 'mb-4', 'border-0');\r\n\r\n    const itemImage = document.createElement('div');\r\n    itemImage.classList.add('meal-img');\r\n\r\n    const image = document.createElement('img');\r\n    image.src = data[i].strMealThumb;\r\n\r\n    itemImage.appendChild(image);\r\n    listItem.appendChild(itemImage);\r\n\r\n    const itemText = document.createElement('div');\r\n    itemText.classList.add('meal-name', 'd-flex', 'pt-3', 'justify-content-center', 'align-items-center');\r\n\r\n    const mealName = document.createElement('h3');  \r\n    mealName.classList.add('fs-6', 'me-2', 'pt-1');\r\n    mealName.innerHTML = data[i].strMeal;\r\n\r\n    const likeBtn = document.createElement('i');\r\n    likeBtn.classList.add('bi', 'bi-heart', 'like-btn', 'text-danger');\r\n    likeBtn.id = data[i].idMeal;\r\n\r\n    itemText.appendChild(mealName);\r\n    itemText.appendChild(likeBtn);\r\n    listItem.appendChild(itemText);\r\n\r\n    const mealLikes = document.createElement('div');\r\n    const numOfLikes = document.createElement('small');\r\n    numOfLikes.innerHTML = '0 likes';\r\n    mealLikes.appendChild(numOfLikes);\r\n    listItem.appendChild(mealLikes);\r\n\r\n    const commentContainer = document.createElement('div');\r\n    commentContainer.classList.add('comment', 'mb-4', 'mt-2');\r\n   \r\n    // modal content button container\r\n    const cmtButton = document.createElement('button');\r\n    cmtButton.classList.add('btn', 'btn-secondary', 'rounded-pill', 'px-4', 'shadow', 'comment-btn');\r\n    cmtButton.setAttribute('id', `${data[i].idMeal}`);\r\n    cmtButton.setAttribute('type', 'button');\r\n    cmtButton.setAttribute('data-bs-toggle', 'modal');\r\n    cmtButton.setAttribute('data-bs-target', '#staticBackdrop');\r\n    cmtButton.innerHTML = 'comments';\r\n\r\n    commentContainer.appendChild(cmtButton);\r\n    listItem.appendChild(commentContainer);\r\n\r\n    // Reservation button\r\n    const rsvButton = document.createElement('button');\r\n    rsvButton.classList.add('btn', 'btn-secondary', 'rounded-pill', 'px-4', 'shadow', 'reservation-btn');\r\n    rsvButton.setAttribute('id', `${data[i].idMeal}`);\r\n    rsvButton.setAttribute('type', 'button');\r\n    rsvButton.setAttribute('data-bs-toggle', 'modal');\r\n    rsvButton.setAttribute('data-bs-target', '#staticBackdrop');\r\n    rsvButton.innerHTML = 'reservation';\r\n\r\n    commentContainer.appendChild(rsvButton);\r\n    listItem.appendChild(commentContainer);\r\n\r\n    foodDiv.appendChild(listItem);\r\n    mainDiv.appendChild(foodDiv);\r\n    \r\n    const mealLikesArray = await (0,_getMealLikes__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n    mealLikesCount(likeBtn, mealLikesArray, numOfLikes);\r\n    \r\n    likeBtn.addEventListener('click', async (e) => {\r\n      await (0,_createMealLike__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(likeBtn.id);\r\n      const newMealLikes = await (0,_getMealLikes__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n      mealLikesCount(e.target, newMealLikes, numOfLikes);\r\n    });\r\n  }\r\n};\r\n\r\n// post a comment for the meal\r\nconst postComment = async (data) => {\r\n  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8WhiXHgGMaGrsfo6vYsR/comments';\r\n  const response = await fetch(url, {\r\n    method: 'POST',\r\n    headers: {\r\n      'Content-type': 'application/json',\r\n    },\r\n    body: JSON.stringify(data),\r\n  });\r\n  return response.ok;\r\n};\r\n\r\nconst getMealComment = async (item) => {\r\n  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8WhiXHgGMaGrsfo6vYsR/comments?item_id=${item.idMeal}`;\r\n  let myComment = await fetch(url).then((response) => response.json());\r\n  const ul = document.querySelector('#list-comment');\r\n  ul.innerHTML = '';\r\n  const h3 = document.querySelector('.comment-count');\r\n  h3.innerHTML = `Comments(${(0,_mealCommentCounter__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(myComment)})`;\r\n  if (!myComment.length) myComment = [];\r\n  myComment.forEach((comment) => {\r\n    ul.innerHTML += `\r\n      <li class=\"d-flex justify-content-start align-items-center\">\r\n        <p class=\"me-3\">${comment.creation_date}</p>\r\n        <p class=\"me-3\">${comment.username}</p>\r\n        <p>${comment.comment}</p>\r\n      </li>\r\n    `;\r\n  });\r\n};\r\n\r\n// Meal comments section\r\n\r\n\r\nconst getMeal = async (e) => {\r\n  e.preventDefault();\r\n  if (e.target.classList.contains('comment-btn')) {\r\n    const mealItem = e.target.parentElement.parentElement.parentElement;\r\n    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`;\r\n    const response = await fetch(url).then((response) => response.json()).then((data) => data);\r\n    mealModal(response.meals);\r\n  }\r\n};\r\n\r\nmainDiv.addEventListener('click', getMeal);\r\nbtnClose.addEventListener('click', () => {\r\n  mealRecipeDetails.parentElement.classList.remove('showComment');\r\n});\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mealList);\r\n\n\n//# sourceURL=webpack://webpack/./src/mealList.js?");
 
 /***/ })
 
