@@ -1,6 +1,6 @@
-import createMealLike from './createMealLike';
-import getMealLikes from './getMealLikes';
-import mealCommentCounter from './mealCommentCounter';
+import createMealLike from './createMealLike.js';
+import getMealLikes from './getMealLikes.js';
+import mealCommentCounter from './mealCommentCounter.js';
 
 const mainDiv = document.querySelector('#meal-items');
 const btnClose = document.querySelector('.close-btn');
@@ -15,7 +15,6 @@ const mealLikesCount = (target, mealLikesArray, numOfLikes) => {
 };
 
 const mealList = async (data) => {
-
   for (let i = 0; i <= data.length - 1; i += 1) {
     const foodDiv = document.createElement('div');
     foodDiv.classList.add('col-lg-4');
@@ -37,7 +36,7 @@ const mealList = async (data) => {
     const itemText = document.createElement('div');
     itemText.classList.add('meal-name', 'd-flex', 'pt-3', 'justify-content-center', 'align-items-center');
 
-    const mealName = document.createElement('h3');  
+    const mealName = document.createElement('h3');
     mealName.classList.add('fs-6', 'me-2', 'pt-1');
     mealName.innerHTML = data[i].strMeal;
 
@@ -57,7 +56,7 @@ const mealList = async (data) => {
 
     const commentContainer = document.createElement('div');
     commentContainer.classList.add('comment', 'mb-4', 'mt-2');
-   
+
     // modal content button container
     const cmtButton = document.createElement('button');
     cmtButton.classList.add('btn', 'btn-secondary', 'rounded-pill', 'px-4', 'shadow', 'comment-btn');
@@ -84,10 +83,11 @@ const mealList = async (data) => {
 
     foodDiv.appendChild(listItem);
     mainDiv.appendChild(foodDiv);
-    
+
+    // eslint-disable-next-line no-await-in-loop
     const mealLikesArray = await getMealLikes();
     mealLikesCount(likeBtn, mealLikesArray, numOfLikes);
-    
+
     likeBtn.addEventListener('click', async (e) => {
       await createMealLike(likeBtn.id);
       const newMealLikes = await getMealLikes();
@@ -129,6 +129,50 @@ const getMealComment = async (item) => {
 };
 
 // Meal comments section
+const mealModal = async (meal) => {
+  [meal] = meal;
+  mealRecipeDetails.innerHTML = `
+    <h2 class = "recipe-title">${meal.strMeal}</h2>
+    <p class = "recipe-category">${meal.strCategory}</p>
+    <div class = "recipe-instruct">
+      <h3>Instructions:</h3>
+      <p>${meal.strInstructions}</p>
+    </div>
+    <div class = "recipe-meal-img">
+      <img src = "${meal.strMealThumb}" alt = "">
+    </div>
+    <h3 class="m-3 comment-count"></h3>
+    <div class="d-flex justify-content-center align-items-center">
+      <ul id="list-comment" class="list-unstyled">
+      </ul>
+    </div>
+    <h3 class="m-3">Add a comment</h3>
+    <form autocomplete="off" class="w-50 mx-auto">
+      <input type="text" class="form-control w-75 mx-auto mb-2" id="commentator" placeholder="Your name">
+      <textarea id="comment" name="comment" placeholder="Your comment..."></textarea>
+      <button type="button" class="btn btn-secondary commentBtn">Comment</button>
+    </form>
+  `;
+  mealRecipeDetails.parentElement.classList.add('showComment');
+  const commentBtn = document.querySelector('.commentBtn');
+  commentBtn.addEventListener('click', () => {
+    const username = document.querySelector('#commentator').value;
+    const comment = document.querySelector('#comment').value;
+    const itemId = meal.idMeal;
+    const newData = {
+      item_id: itemId,
+      username,
+      comment,
+    };
+    postComment(newData);
+    document.querySelector('#commentator').value = '';
+    document.querySelector('#comment').value = '';
+    setTimeout(() => {
+      getMealComment(meal);
+    }, 100);
+  });
+  getMealComment(meal);
+};
 
 const getMeal = async (e) => {
   e.preventDefault();
