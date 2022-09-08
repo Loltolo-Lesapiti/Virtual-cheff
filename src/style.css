@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Patrick+Hand&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 *,
 ::after,
 ::before {
@@ -5,4 +7,40 @@
   padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+}
+
+.navbar {
+  background-color: #eeeed6;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #eeeed6;
+  padding: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  font-style: italic;
+}
+
+.footer a:hover {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    font-size: 18px;
+  }
 }
