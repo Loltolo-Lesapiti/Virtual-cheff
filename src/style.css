@@ -23,7 +23,7 @@ h6,
 }
 
 body {
-  background: #383A59;
+  background: #383a59;
 }
 
 .meal-details {
@@ -99,7 +99,7 @@ body {
   cursor: pointer;
 }
 
-/***more styles***/
+/***  more styles  ***/
 .navbar {
   background-color: #eeeed6;
   font-size: 24px;
@@ -135,4 +135,3 @@ body {
     font-size: 18px;
   }
 }
-
