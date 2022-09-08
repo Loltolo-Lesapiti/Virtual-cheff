@@ -130,7 +130,6 @@ const getMealComment = async (item) => {
 
 // Meal comments section
 
-
 const getMeal = async (e) => {
   e.preventDefault();
   if (e.target.classList.contains('comment-btn')) {
