@@ -46,7 +46,7 @@ const mealList = async (data) => {
     likeBtn.id = data[i].idMeal;
 
     itemText.appendChild(mealName);
-    // itemText.appendChild(likeBtn);
+    itemText.appendChild(likeBtn);
     listItem.appendChild(itemText);
 
     const commentContainer = document.createElement('div');
