@@ -1,6 +1,7 @@
 import createMealLike from './createMealLike.js';
 import getMealLikes from './getMealLikes.js';
 import mealCommentCounter from './mealCommentCounter.js';
+import mealRecipeCounter from './mealRecipeCount.js';
 
 const mainDiv = document.querySelector('#meal-items');
 const btnClose = document.querySelector('.close-btn');
@@ -94,6 +95,9 @@ const mealList = async (data) => {
       mealLikesCount(e.target, newMealLikes, numOfLikes);
     });
   }
+
+  const mealCount = document.querySelector('#meal-count');
+  mealCount.innerHTML = mealRecipeCounter(data);
 };
 
 // post a comment for the meal
@@ -169,7 +173,7 @@ const mealModal = async (meal) => {
     document.querySelector('#comment').value = '';
     setTimeout(() => {
       getMealComment(meal);
-    }, 100);
+    }, 1000);
   });
   getMealComment(meal);
 };
