@@ -133,24 +133,33 @@ const mealModal = async (meal) => {
   [meal] = meal;
   mealRecipeDetails.innerHTML = `
     <h2 class = "recipe-title">${meal.strMeal}</h2>
-    <p class = "recipe-category">${meal.strCategory}</p>
-    <div class = "recipe-instruct">
-      <h3>Instructions:</h3>
-      <p>${meal.strInstructions}</p>
-    </div>
     <div class = "recipe-meal-img">
       <img src = "${meal.strMealThumb}" alt = "">
     </div>
+    <div class = "recipe-instruct">
+      <h4>Instructions for making</h4>
+    <h4 class = "recipe-category">${meal.strCategory}</h4>
+      <p class="text-center mx-5">${meal.strInstructions}</p>
+    </div>
+    
     <h3 class="m-3 comment-count"></h3>
     <div class="d-flex justify-content-center align-items-center">
       <ul id="list-comment" class="list-unstyled">
       </ul>
     </div>
-    <h3 class="m-3">Add a comment</h3>
+    <h3 class="m-3 addComment">Add a comment</h3>
     <form autocomplete="off" class="w-50 mx-auto">
-      <input type="text" class="form-control w-75 mx-auto mb-2" id="commentator" placeholder="Your name">
-      <textarea id="comment" name="comment" placeholder="Your comment..."></textarea>
+ <ul>
+  <li>
+      <input type="text" class="form-control mb-2" id="commentator" placeholder="Your name">
+</li>
+<li>
+      <textarea id="comment" name="comment" placeholder="Your comment..."  rows="4" cols="45"></textarea>
+</li>
+<li>
       <button type="button" class="btn btn-secondary commentBtn">Comment</button>
+ </li>
+</ul>
     </form>
   `;
   mealRecipeDetails.parentElement.classList.add('showComment');
