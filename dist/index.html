@@ -1,17 +1,24 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <title>Virtual-Cheff</title>
-<script defer src="main.js"></script></head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- JavaScript Bundle with Popper -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+
 <body>
-  <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand color-primary" href="#">Virtual Cheff</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand color-primary" href="#">Virtual Cheff</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,21 +37,21 @@
   </nav>
     <main class="container meals-wrapper py-5">
         <div class="row" id="meal-items"></div>
-    
+
         <div class="meal-details">
-          <button type="button" class="btn close-btn" id="close">
-            <i class="fas fa-times"></i>
-          </button>
-          
-          <div class="meal-recipe"></div>
+            <button type="button" class="btn close-btn" id="close">X</button>
+
+            <div class="meal-recipe"></div>
         </div>
-      </main>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7290f27402.js" crossorigin="anonymous"></script>
     <footer class="footer">
-      <div>
-          This Project build by <a href="# ">@abigiyaTY</a> and <a href="# ">Benard</a> and <a href="# ">@petro</a>
-      </div>
-  </footer>
-</body>
+        <div>
+            This Project build by <a href="# ">@abigiyaTY</a> and <a href="# ">Benard</a> and <a href="# ">@petro</a>
+        </div>
+    </footer>
+    <script type="module" src="./index.js"></script>
+<script defer src="main.js"></script></body>
+
 </html>
