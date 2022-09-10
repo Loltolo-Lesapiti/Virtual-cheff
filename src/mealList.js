@@ -202,4 +202,116 @@ btnClose.addEventListener('click', () => {
   mealRecipeDetails.parentElement.classList.remove('showComment');
 });
 
+
+///////////////////////////////////////
+// resevation from\
+// post a reservation for the meal
+const postResevation = async(data) => {
+  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/l35PAuerIZ0jKQQ35zG1/reservations';
+  const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+          'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+  });
+  return response.ok;
+};
+const getMealResvation = async(item) => {
+  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/l35PAuerIZ0jKQQ35zG1/reservations?item_id=${item.idMeal}`;
+  let myResevation = await fetch(url).then((response) => response.json());
+  const ulR = document.querySelector('#list-resevation');
+  ulR.innerHTML = '';
+  console.log(myResevation);
+  // the resevation part is fixed here
+
+  const h3 = document.querySelector('.reservation-count');
+  h3.innerHTML = `Resevation(${resevationCounter(myResevation)})`;
+  if (!myResevation.length) myResevation = [];
+  myResevation.forEach((resevation) => {
+      ulR.innerHTML += `
+    <li class="d-flex justify-content-start align-items-center">
+      <p class="me-3">${resevation.date_start}</p>
+      <p class="me-3">${resevation.username}</p>
+      <p>${resevation.date_end}</p>
+    </li>
+  `;
+  });
+};
+
+const mealReseved = async(meal) => {
+  [meal] = meal;
+  mealReseverDetails.innerHTML = `
+<h2>Virtual Cheff Reservation</h2>
+<div class = "recipe-meal-img">
+    <img src = "${meal.strMealThumb}" alt = "">
+</div>
+  <div class = "recipe-instruct">
+  <h4>Resevation for</h4>
+  <h4 class = "recipe-title">${meal.strMeal}</h4>
+    <p class="text-center mx-5">${meal.strInstructions}</p>
+  </div>
+  <h3 class="m-3 reservation-count"></h3>
+  <div class="d-flex justify-content-center align-items-center">
+    <ul id="list-resevation" class="list-unstyled">
+    </ul>
+  </div>
+  <h3 class="m-3 addComment">Add a Resevation</h3>
+  <form autocomplete="off" class="w-50 mx-auto">
+<ul>
+<li>
+    <input type="text" class="form-control mb-2" id="commentator" placeholder="Your name">
+</li>
+<li>
+<input type="date" placeholder="Start Date" class="form-control my-2" id="Startdate" >
+</li>
+<li>
+<input type="date" placeholder="End Date" class="form-control" id="Enddate" >
+</li>
+
+<li>
+    <button type="button" class="btn btn-secondary reservationBtn  my-2">Reseve</button>
+</li>
+</ul>
+  </form>
+`;
+  mealReseverDetails.parentElement.classList.add('showResevation');
+  const commentBtn = document.querySelector('.reservationBtn');
+  commentBtn.addEventListener('click', () => {
+      const username = document.querySelector('#commentator').value;
+      const date_start=document.querySelector('#Startdate').value;
+      const date_end=document.querySelector('#Enddate').value;
+      const itemId = meal.idMeal;
+      const newData = {
+          item_id: itemId,
+          username,
+          date_start,
+          date_end,
+      };
+      postResevation(newData);
+      username = document.querySelector('#commentator').value="";
+      start_date=document.querySelector('#Startdate').value="";
+     end_date=document.querySelector('#Enddate').value="";
+      setTimeout(() => {
+          getMealResvation(meal);
+      }, 1000);
+  });
+  getMealResvation(meal);
+};
+const getMealRs = async(e) => {
+  e.preventDefault();
+  if (e.target.classList.contains('reservation-btn')) {
+      const mealItem = e.target.parentElement.parentElement.parentElement;
+      const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`;
+      const response = await fetch(url).then((response) => response.json()).then((data) => data);
+      mealReseved(response.meals);
+  }
+};
+
+mainDiv.addEventListener('click', getMealRs);
+btnCloseRS.addEventListener('click', () => {
+  mealReseverDetails.parentElement.classList.remove('showResevation');
+});
+
+
 export default mealList;
