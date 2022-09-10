@@ -24,7 +24,6 @@ const mealLikesCount = (target, mealLikesArray, numOfLikes) => {
         }
     });
 };
-
 const mealList = async(data) => {
     for (let i = 0; i <= data.length - 1; i += 1) {
         const foodDiv = document.createElement('div');
@@ -266,13 +265,12 @@ const getMealResvation = async(item) => {
 const mealReseved = async(meal) => {
     [meal] = meal;
     mealReseverDetails.innerHTML = `
-<h2>Virtual Cheff Reservation</h2>
+<h2>${meal.strMeal}</h2>
 <div class = "recipe-meal-img">
       <img src = "${meal.strMealThumb}" alt = "">
 </div>
     <div class = "recipe-instruct">
-    <h4>Resevation for</h4>
-    <h4 class = "recipe-title">${meal.strMeal}</h4>
+    <h4 class = "recipe-title">Recipe Details</h4>
       <p class="text-center mx-5">${meal.strInstructions}</p>
     </div>
     <h3 class="m-3 reservation-count"></h3>
