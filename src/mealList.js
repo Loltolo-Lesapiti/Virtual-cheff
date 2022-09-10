@@ -2,10 +2,14 @@ import createMealLike from './createMealLike.js';
 import getMealLikes from './getMealLikes.js';
 import mealCommentCounter from './mealCommentCounter.js';
 import mealRecipeCounter from './mealRecipeCount.js';
+import resevationCounter from './resevationCounter.js';
 
 const mainDiv = document.querySelector('#meal-items');
 const btnClose = document.querySelector('.close-btn');
+
 const mealRecipeDetails = document.querySelector('.meal-recipe');
+const mealReseverDetails = document.querySelector('.meal-recipe-rs');
+const btnCloseRS = document.querySelector('.close-btn-rs');
 
 const mealLikesCount = (target, mealLikesArray, numOfLikes) => {
   mealLikesArray.forEach((obj) => {
@@ -14,7 +18,6 @@ const mealLikesCount = (target, mealLikesArray, numOfLikes) => {
     }
   });
 };
-
 const mealList = async (data) => {
   for (let i = 0; i <= data.length - 1; i += 1) {
     const foodDiv = document.createElement('div');
@@ -58,7 +61,6 @@ const mealList = async (data) => {
     const commentContainer = document.createElement('div');
     commentContainer.classList.add('comment', 'mb-4', 'mt-2');
 
-    // modal content button container
     const cmtButton = document.createElement('button');
     cmtButton.classList.add('btn', 'btn-secondary', 'rounded-pill', 'px-4', 'shadow', 'comment-btn');
     cmtButton.setAttribute('id', `${data[i].idMeal}`);
@@ -70,7 +72,9 @@ const mealList = async (data) => {
     commentContainer.appendChild(cmtButton);
     listItem.appendChild(commentContainer);
 
-    // Reservation button
+    const resevationContainer = document.createElement('div');
+    resevationContainer.classList.add('comment', 'mb-4', 'mt-2');
+
     const rsvButton = document.createElement('button');
     rsvButton.classList.add('btn', 'btn-secondary', 'rounded-pill', 'px-4', 'shadow', 'reservation-btn');
     rsvButton.setAttribute('id', `${data[i].idMeal}`);
@@ -79,8 +83,11 @@ const mealList = async (data) => {
     rsvButton.setAttribute('data-bs-target', '#staticBackdrop');
     rsvButton.innerHTML = 'reservation';
 
-    commentContainer.appendChild(rsvButton);
-    listItem.appendChild(commentContainer);
+    resevationContainer.appendChild(rsvButton);
+    listItem.appendChild(resevationContainer);
+
+    foodDiv.appendChild(listItem);
+    mainDiv.appendChild(foodDiv);
 
     foodDiv.appendChild(listItem);
     mainDiv.appendChild(foodDiv);
@@ -100,7 +107,6 @@ const mealList = async (data) => {
   mealCount.innerHTML = mealRecipeCounter(data);
 };
 
-// post a comment for the meal
 const postComment = async (data) => {
   const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8WhiXHgGMaGrsfo6vYsR/comments';
   const response = await fetch(url, {
@@ -132,7 +138,6 @@ const getMealComment = async (item) => {
   });
 };
 
-// Meal comments section
 const mealModal = async (meal) => {
   [meal] = meal;
   mealRecipeDetails.innerHTML = `
@@ -148,6 +153,7 @@ const mealModal = async (meal) => {
     
     <h3 class="m-3 comment-count"></h3>
     <div class="d-flex justify-content-center align-items-center">
+
       <ul id="list-comment" class="list-unstyled">
       </ul>
     </div>
@@ -186,7 +192,6 @@ const mealModal = async (meal) => {
   });
   getMealComment(meal);
 };
-
 const getMeal = async (e) => {
   e.preventDefault();
   if (e.target.classList.contains('comment-btn')) {
@@ -200,6 +205,113 @@ const getMeal = async (e) => {
 mainDiv.addEventListener('click', getMeal);
 btnClose.addEventListener('click', () => {
   mealRecipeDetails.parentElement.classList.remove('showComment');
+});
+
+const postResevation = async (data) => {
+  const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/l35PAuerIZ0jKQQ35zG1/reservations';
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.ok;
+};
+const getMealResvation = async (item) => {
+  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/l35PAuerIZ0jKQQ35zG1/reservations?item_id=${item.idMeal}`;
+  let myResevation = await fetch(url).then((response) => response.json());
+  const ulR = document.querySelector('#list-resevation');
+  ulR.innerHTML = '';
+  /* eslint-disable no-multi-assign */
+  const h3 = document.querySelector('.reservation-count');
+  h3.innerHTML = `Reservation(${resevationCounter(myResevation)})`;
+  if (!myResevation.length) myResevation = [];
+  myResevation.forEach((resevation) => {
+    ulR.innerHTML += `
+      <li class="d-flex justify-content-start align-items-center">
+        <p class="me-3">${resevation.date_start} - </p>
+        <p>${resevation.date_end} </p>
+        <p class="me-3">&nbsp by &nbsp${resevation.username}</p>
+        
+      </li>
+    `;
+  });
+};
+
+const mealReseved = async (meal) => {
+  [meal] = meal;
+  mealReseverDetails.innerHTML = `
+<h2>${meal.strMeal}</h2>
+<div class = "recipe-meal-img">
+      <img src = "${meal.strMealThumb}" alt = "">
+</div>
+    <div class = "recipe-instruct">
+    <h4 class = "recipe-title">Recipe Details</h4>
+      <p class="text-center mx-5">${meal.strInstructions}</p>
+    </div>
+    <h3 class="m-3 reservation-count"></h3>
+    <div class="d-flex justify-content-center align-items-center">
+      <ul id="list-resevation" class="list-unstyled">
+      </ul>
+    </div>
+    <h3 class="m-3 addComment">Add a Reservation</h3>
+    <form autocomplete="off" class="w-50 mx-auto">
+ <ul>
+  <li>
+      <input type="text" class="form-control mb-2" id="commentator" placeholder="Your name">
+</li>
+<li>
+<input type="date" placeholder="Start Date" class="form-control my-2" id="Startdate" >
+ </li>
+<li>
+<input type="date" placeholder="End Date" class="form-control" id="Enddate" >
+</li>
+
+<li>
+      <button type="button" class="btn btn-secondary reservationBtn  my-2">Reserve</button>
+ </li>
+</ul>
+    </form>
+  `;
+  mealReseverDetails.parentElement.classList.add('showResevation');
+  const commentBtn = document.querySelector('.reservationBtn');
+  commentBtn.addEventListener('click', () => {
+    let username = document.querySelector('#commentator').value;
+    /* eslint-disable camelcase */
+    let date_start = document.querySelector('#Startdate').value;
+    let date_end = document.querySelector('#Enddate').value;
+    const itemId = meal.idMeal;
+    const newData = {
+      item_id: itemId,
+      username,
+      date_start,
+      date_end,
+    };
+    postResevation(newData);
+    /* eslin-disablet no-undef */
+    username = document.querySelector('#commentator').value = '';
+    date_start = document.querySelector('#Startdate').value = '';
+    date_end = document.querySelector('#Enddate').value = '';
+    setTimeout(() => {
+      getMealResvation(meal);
+    }, 1000);
+  });
+  getMealResvation(meal);
+};
+const getMealRs = async (e) => {
+  e.preventDefault();
+  if (e.target.classList.contains('reservation-btn')) {
+    const mealItem = e.target.parentElement.parentElement.parentElement;
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`;
+    const response = await fetch(url).then((response) => response.json()).then((data) => data);
+    mealReseved(response.meals);
+  }
+};
+
+mainDiv.addEventListener('click', getMealRs);
+btnCloseRS.addEventListener('click', () => {
+  mealReseverDetails.parentElement.classList.remove('showResevation');
 });
 
 export default mealList;
