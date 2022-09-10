@@ -15,7 +15,7 @@
 
 ## Video Demo
 
-[Video Record](https://drive.google.com/file/d/1idUxqPIzQ4kt2j6zZUm_sWZMnMOSyRrH/view?usp=sharing)
+[Video](https://drive.google.com/file/d/1idUxqPIzQ4kt2j6zZUm_sWZMnMOSyRrH/view?usp=sharing)
 
 ## Live Demo
 
