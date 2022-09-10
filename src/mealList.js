@@ -232,7 +232,7 @@ const getMealResvation = async (item) => {
       <li class="d-flex justify-content-start align-items-center">
         <p class="me-3">${resevation.date_start} - </p>
         <p>${resevation.date_end} </p>
-        <p class="me-3">&nbsp  by ${resevation.username}</p>
+        <p class="me-3">&nbsp by ${resevation.username}</p>
         
       </li>
     `;
