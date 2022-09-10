@@ -19,6 +19,7 @@ const mealLikesCount = (target, mealLikesArray, numOfLikes) => {
   });
 };
 const mealList = async (data) => {
+  const mealLikesArray = await getMealLikes();
   for (let i = 0; i <= data.length - 1; i += 1) {
     const foodDiv = document.createElement('div');
     foodDiv.classList.add('col-lg-4');
@@ -92,8 +93,6 @@ const mealList = async (data) => {
     foodDiv.appendChild(listItem);
     mainDiv.appendChild(foodDiv);
 
-    // eslint-disable-next-line no-await-in-loop
-    const mealLikesArray = await getMealLikes();
     mealLikesCount(likeBtn, mealLikesArray, numOfLikes);
 
     likeBtn.addEventListener('click', async (e) => {
@@ -223,7 +222,7 @@ const getMealResvation = async (item) => {
   let myResevation = await fetch(url).then((response) => response.json());
   const ulR = document.querySelector('#list-resevation');
   ulR.innerHTML = '';
-  /* eslint-disable no-multi-assign */
+
   const h3 = document.querySelector('.reservation-count');
   h3.innerHTML = `Reservation(${resevationCounter(myResevation)})`;
   if (!myResevation.length) myResevation = [];
@@ -256,7 +255,7 @@ const mealReseved = async (meal) => {
       </ul>
     </div>
     <h3 class="m-3 addComment">Add a Reservation</h3>
-    <form autocomplete="off" class="w-50 mx-auto">
+    <form autocomplete="off" id="form1" class="w-50 mx-auto">
  <ul>
   <li>
       <input type="text" class="form-control mb-2" id="commentator" placeholder="Your name">
@@ -277,22 +276,21 @@ const mealReseved = async (meal) => {
   mealReseverDetails.parentElement.classList.add('showResevation');
   const commentBtn = document.querySelector('.reservationBtn');
   commentBtn.addEventListener('click', () => {
-    let username = document.querySelector('#commentator').value;
-    /* eslint-disable camelcase */
-    let date_start = document.querySelector('#Startdate').value;
-    let date_end = document.querySelector('#Enddate').value;
+    const userName = document.querySelector('#commentator').value;
+
+    const dateStart = document.querySelector('#Startdate').value;
+    const dateEnd = document.querySelector('#Enddate').value;
     const itemId = meal.idMeal;
     const newData = {
       item_id: itemId,
-      username,
-      date_start,
-      date_end,
+      username: userName,
+      date_start: dateStart,
+      date_end: dateEnd,
     };
     postResevation(newData);
-    /* eslin-disablet no-undef */
-    username = document.querySelector('#commentator').value = '';
-    date_start = document.querySelector('#Startdate').value = '';
-    date_end = document.querySelector('#Enddate').value = '';
+
+    document.getElementById('form1').reset();
+
     setTimeout(() => {
       getMealResvation(meal);
     }, 1000);
